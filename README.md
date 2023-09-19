@@ -1,46 +1,92 @@
-# Getting Started with Create React App
+# 【Typescript 前端部屬】
+# Typescript build new project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# start project
+npx create-react-app _file_name --template typescript
+# cd into file
+cd _file_name
+# To add typescript into existing project
+npm install --save typescript @types/node @types/react @types/react-dom @types/jest
 
-## Available Scripts
 
-In the project directory, you can run:
+# ===========================================================================================
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+# 【Tailwind 安裝】
+# To add Tailwindcss
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+# cd into project file first
+    npm install -D tailwindcssnpx tailwindcss init
+    npx tailwindcss init
+# check tailwind.config.js
+# Add the paths to all of your template files in your
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+    content: [
+    "./src/**/*.{js,jsx,ts,tsx}",
+    ],
+    theme: {
+    extend: {},
+    },
+    plugins: [],
+}
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# add to index.css
+# Add the `@tailwind` directives for each of Tailwind’s layers to your `./src/index.css` file.
+# index.css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# start npm server!
+npm run start
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+# ===========================================================================================
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+# 【Redux 安裝】
+# install redux
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+# 增加 Redux 到現有專案
+# If you use npm:
+npm install react-redux    
+# Or if you use Yarn:
+yarn add react-redux
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+# 安裝 redux toolkit
+npm install @reduxjs/toolkit
+# (若不能安裝，則去tsconfig.json中，加入 "moduleResolution": "node" )
 
-## Learn More
+# quick start
+# 建立 store.ts檔案
+# .src/store.ts
+import { configureStore } from '@reduxjs/toolkit'
+// ...
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+const store = configureStore({
+    reducer: {
+// add reducer slice
+    },
+})
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+// Infer the `RootState` and `AppDispatch` types from the store itself
+export type RootState = ReturnType<typeof store.getState>
+// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
+export type AppDispatch = typeof store.dispatch
+
+
+# 建立 hooks.ts檔案
+# (for type version)
+# 用 useAppDispatch，而非 useDispatch
+# 用 useAppSelector，而非 useSelector
+
+import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
+import type { RootState, AppDispatch } from './store'
+
+// Use throughout your app instead of plain `useDispatch` and `useSelector`
+export const useAppDispatch: () => AppDispatch = useDispatch
+export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector
