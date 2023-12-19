@@ -2,7 +2,8 @@ import uvicorn
 import env as env
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from routers import orders
+from routers.orders import orders
+from routers.customers import customers
 import backendSetup.models
 from backendSetup.database import engine
 
@@ -23,6 +24,7 @@ app.add_middleware(
 backendSetup.models.Base.metadata.create_all(engine)
 
 app.include_router(orders.router)
+app.include_router(customers.router)
 
 
 if __name__ == '__main__':
