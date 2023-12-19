@@ -1,13 +1,29 @@
 import { OrderInterface } from "../../actions/apiInterface"
 import { TimeHandler } from "../../actions/globalFuncs"
+import { DeleteBtn } from "../widgets/buttons"
+import { useAppDispatch, useAppSelector } from "../../stores/hooks"
+import ApiSets from "../../actions/apiSets"
+import { CLEAR_ORDERS, FETCH_ORDERS } from "../../stores/ordersSlice"
+import { subPage2Month } from "../navBar/navFuncs"
 
 interface stateIF{
     time:string,
-    content:string,
+    stage:number,
     status:number
 }
 
 const Orders=(props:OrderInterface):JSX.Element=>{
+    const dispatch = useAppDispatch()
+    const page = useAppSelector((state)=>state.page)
+    function deleteOrder(_id:number){
+        ApiSets.delete_order(_id)
+            .then(()=>{
+                ApiSets.get_orders_list<OrderInterface[]>({id:0, month:subPage2Month(page.currentSubPage)})
+                .then(res=>{dispatch(FETCH_ORDERS(res))})
+                .catch(()=>{dispatch(CLEAR_ORDERS())})
+            })
+            .catch(err=>{console.log(err)})
+    }
     let _hoverStyle:string = "hover:outline hover:outline-2 hover:outline-slate-400 "
     let _frameStyle:string = "h-16 w-100 m-0.5 mb-1 bg-white rounded-sm shadow flex flex-row items-center "
     let _gridStyle:string = "grid"
@@ -18,22 +34,37 @@ const Orders=(props:OrderInterface):JSX.Element=>{
             </div>
         </div>
         <div className="col-span-1 flex justify-center items-center">{props.id}</div>
-        <StateComponent time={new TimeHandler(props.place_time).getAutoDate()} content={'已成立'} status={props.product_status}/>
-        <StateComponent time={new TimeHandler().getDateZHTW()} content={'已完成'} status={0}/>
-        <StateComponent time={new TimeHandler().getDateZHTW()} content={'已完成'} status={0}/>
+        <StateComponent time={new TimeHandler(props.place_time).getAutoDate()} stage={0} status={1}/>
+        <StateComponent time={new TimeHandler().getDateZHTW()} stage={1} status={props.payment_status}/>
+        <StateComponent time={new TimeHandler().getDateZHTW()} stage={2} status={props.shipping_status}/>
         <div className="col-span-2 flex justify-center items-center"></div>
         <div className="col-span-2 flex justify-center items-center">已完成</div>
         <div className="col-span-2 flex justify-center items-center">已完成</div>
         <div className="col-span-2 flex justify-center items-center">{props.name}</div>
         <div className="col-span-2 flex justify-center items-center">$3000</div>
+        <DeleteBtn size="col-span-2" function={()=>{deleteOrder(props.id)}}/>
     </div>)
 }
 export default Orders
 
-const StateComponent=({time, content, status}:stateIF):JSX.Element => {
+const StateComponent=({time, stage, status}:stateIF):JSX.Element => {
     let _bg = handleStateColor(status)
+    let _content = ''
+    switch (stage) {
+        case 0:
+            _content = '成立'
+            break;
+        case 1:
+            _content = '付款'
+            break;
+        case 2:
+            _content = '出貨'
+            break;
+        default:
+            break;
+    }
     return <div className="col-span-2 flex justify-center items-center flex-col">
-        <div className={"rounded px-1 "+_bg}>{content}</div>
+        <div className={"rounded px-1 "+_bg}>{status!==0?"已":"未"}{_content}</div>
         <div>{new TimeHandler().DB2Time(time)}</div>
     </div>
 }
@@ -41,12 +72,13 @@ const StateComponent=({time, content, status}:stateIF):JSX.Element => {
 function handleStateColor(_status:number):string{
     switch (_status) {
         case 0: return 'bg-red-300'
-        case 1: return 'bg-red-300'
-        case 2: return 'bg-orange-300'
-        case 3: return 'gray'
-        case 4: return 'gray'
-        case 5: return 'gray'
-        case 6: return 'gray'
+        case 1: return 'bg-green-300'
+        // case 1: return 'bg-red-300'
+        // case 2: return 'bg-orange-300'
+        // case 3: return 'gray'
+        // case 4: return 'gray'
+        // case 5: return 'gray'
+        // case 6: return 'gray'
         default: return 'gray'
     }
 }

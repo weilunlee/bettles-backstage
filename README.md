@@ -1,20 +1,24 @@
-## 前端部署
+## 角頭家族後台
 
-```sh
-npm i
-```
+為了台南甲蟲店**角頭家族**開發的後台專案。用以輔助店家進行訂單追蹤、成本控管、金流計算。
 
-## 後端部屬
+**前端**
 
-```sh
-pip install --upgrade pip
-# 載 fastapi
-pip install fastapi
-# 載 uvicorn
-pip install "uvicorn[standard]"
-# 載 database
-pip install databases
-# 載 sqlalchemy (optional)
-pip install sqlalchemy
+前端程式是以 React Typescript 為主撰寫的。
 
-```
+套件：
+* Typescript
+* Redux
+* tailwindcss
+
+**後端**
+
+後端程式是以 Python + Fastapi + mysql 為主。
+
+套件：
+* Typescript
+* Redux
+* tailwindcss
+
+
+

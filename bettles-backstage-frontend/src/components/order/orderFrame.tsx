@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import ApiSets from "../../actions/apiSets"
 import Orders from "./order"
 import { useAppDispatch, useAppSelector } from "../../stores/hooks"
@@ -10,14 +10,13 @@ import { OrderInterface } from "../../actions/apiInterface"
 // interface OrderbodyIF{ orderArr:OrderInterface[] }
 
 const OrderFrame=():JSX.Element=>{
-
     return(<div className="flex-1 grid grid-flow-row grid-cols-6" style={{gridTemplateRows:"repeat(20, minmax(0, 1fr))"}}>
         <div className="col-span-5 row-span-1 h-11"><OrderListBar /></div>
         <div className={"col-span-1 bg-white rounded-xl"+_border} style={{gridRow:"span 5 / span 5"}}></div>
-        <div className={"col-span-5 grid "+_border} 
+        <div className={"col-span-5 grid "+_border}
             style={{gridRow:"span 19 / span 19", gridTemplateRows:"repeat(12, minmax(0, 1fr))"}}>
             <OrderBody />
-        </div>        
+        </div>
         <div className={"col-span-1 bg-white rounded-xl row-span-3"+_border}></div>
     </div>)
 }
@@ -42,7 +41,7 @@ const OrderBody=():JSX.Element=>{
     </div>
 }
 
-const OrderListBar=():JSX.Element=>{
+export const OrderListBar=():JSX.Element=>{
     return(<div className={"h-full w-full bg-white rounded-t-xl grid grid-cols-12"+_border}>
         <div className="col-span-1 flex justify-around items-center">
             <div className="flex justify-center items-center h-10 w-10 cursor-pointer rounded-full hover:bg-slate-100">
@@ -62,7 +61,7 @@ const OrderListBar=():JSX.Element=>{
 const PageArrow=({content, direction}:Arrow):JSX.Element=>{
     let tip_before = " before:w-3 before:h-3 before:rounded-tl before:border-stone-400 before:hover:border-black"
     let _dir = direction? " before:-rotate-45 before:border-l-2 before:border-t-2":" before:-rotate-45 before:border-b-2 before:border-r-2"
-    return <div 
+    return <div
         data-tooltip={content}
         aria-label={content}
         aria-disabled="true"

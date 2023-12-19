@@ -24,3 +24,14 @@ export interface PostOrder{
     customer_id: string,
     optional: string
 }
+
+export interface CustomerInterface{
+    id:number,
+    address:string,
+    cell_phone:string,
+    conv_store:string,
+    created_at:string,
+    last_ip:string,
+    name:string,
+    updated_at:string,
+}
