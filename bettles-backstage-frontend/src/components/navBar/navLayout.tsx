@@ -41,14 +41,14 @@ const DownArrow = ({side, currentPage}:arrowSide):JSX.Element => {
     const dispatch = useAppDispatch()
     return <div className="w-4 h-4 flex flex-row items-center justify-center ml-3"
         onClick={()=>{dispatch(FULL_PAGESTATE_UPDATE({ currentPage:currentPage}))}}>
-        <div className={`flex-none w-2 h-2 border-b border-r border-stone-500 hover:-rotate-45 transition duration-300 -translate-y-px ${side? "-rotate-45":"rotate-45 "}`}></div>
+        <div className={`flex-none w-2 h-2 border-b border-r border-stone-500    transition duration-300 -translate-y-px ${side? "rotate-45":"-rotate-45 "}`}></div>
     </div>
 }
 
 const NavDropDown = ({ page, sub }:dropDownType):JSX.Element => {
     const dispatch = useAppDispatch()
     return <div className="items-center">
-        {subPageHandler(page).map((res, index)=><div 
+        {subPageHandler(page).map((res, index)=><div
             key={res+index}
             onClick={()=>{dispatch(PAGE_SELECTED({ currentPage:page, currentSubPage:index}))}}
             className={`px-5 py-1 my-1 mx1 rounded-md hover:bg-stone-300 ${sub===index? "bg-stone-300":""}`}>

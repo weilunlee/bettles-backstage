@@ -1,11 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit'
 import pageSelcSlice from './pageSelcSlice'
 import ordersSlice from './ordersSlice'
+import customersSlice from './customersSlice'
 // ...
 export const store = configureStore({
   reducer: {
     page: pageSelcSlice,
-    orders: ordersSlice
+    orders: ordersSlice,
+    customers:customersSlice,
     // comments: commentsReducer,
     // users: usersReducer,
   },

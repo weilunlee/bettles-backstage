@@ -1,4 +1,4 @@
-import { OrderInterface } from "../actions/apiInterface"
+import { CustomerInterface, OrderInterface } from "../actions/apiInterface"
 
 export interface pageState{
     currentPage:number,
@@ -12,4 +12,8 @@ export interface pageState{
 
 export interface OrderState{
     orderList:OrderInterface[]
+}
+
+export interface CustomerState{
+    customerList:CustomerInterface[]
 }
