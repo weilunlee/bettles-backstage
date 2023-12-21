@@ -37,7 +37,7 @@ const OptionButton = ({p_num, opener, openHandler}:optionNum):React.JSX.Element 
     return <div
     onClick={()=>{(openHandler(!opener))}}
     className="mr-10 px-5 my-1 flex items-center w-44 justify-around bg-zinc-50 cursor-pointer shadow-md hover:bg-blue-300 rounded-lg hover:shadow-none">
-    <PlusBtn color="bg-blue-200" size="w-6 h-6" type="" function={()=>{}}/>
+    <PlusBtn css="bg-blue-200 w-6 h-6"/>
     <div className="flex-1 flex justify-center">{pageOptionHandler(p_num)}</div>
 </div>
 }
