@@ -12,7 +12,7 @@ type dropDownType = {
     sub: number
 }
 
-const NavLayout = ():JSX.Element=> {
+const NavLayout = ():React.JSX.Element=> {
     const dispatch = useAppDispatch()
     const page = useAppSelector((state) => state.page)
     const currentPage:number = page.currentPage
@@ -37,7 +37,7 @@ const NavLayout = ():JSX.Element=> {
 }
 export default NavLayout;
 
-const DownArrow = ({side, currentPage}:arrowSide):JSX.Element => {
+const DownArrow = ({side, currentPage}:arrowSide):React.JSX.Element => {
     const dispatch = useAppDispatch()
     return <div className="w-4 h-4 flex flex-row items-center justify-center ml-3"
         onClick={()=>{dispatch(FULL_PAGESTATE_UPDATE({ currentPage:currentPage}))}}>
@@ -45,7 +45,7 @@ const DownArrow = ({side, currentPage}:arrowSide):JSX.Element => {
     </div>
 }
 
-const NavDropDown = ({ page, sub }:dropDownType):JSX.Element => {
+const NavDropDown = ({ page, sub }:dropDownType):React.JSX.Element => {
     const dispatch = useAppDispatch()
     return <div className="items-center">
         {subPageHandler(page).map((res, index)=><div

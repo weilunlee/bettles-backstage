@@ -12,7 +12,7 @@ interface stateIF{
     status:number
 }
 
-const Orders=(props:OrderInterface):JSX.Element=>{
+const Orders=(props:OrderInterface):React.JSX.Element=>{
     const dispatch = useAppDispatch()
     const page = useAppSelector((state)=>state.page)
     function deleteOrder(_id:number){
@@ -47,7 +47,7 @@ const Orders=(props:OrderInterface):JSX.Element=>{
 }
 export default Orders
 
-const StateComponent=({time, stage, status}:stateIF):JSX.Element => {
+const StateComponent=({time, stage, status}:stateIF):React.JSX.Element => {
     let _bg = handleStateColor(status)
     let _content = ''
     switch (stage) {

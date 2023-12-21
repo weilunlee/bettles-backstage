@@ -8,7 +8,7 @@ import Customers from "./customers"
 
 const _border = " border-2 border-slate-200"
 
-const CustomerFrame =():JSX.Element=>{
+const CustomerFrame =():React.JSX.Element=>{
     return <div className="flex-1 grid grid-flow-row grid-cols-6" style={{gridTemplateRows:"repeat(20, minmax(0, 1fr))"}}>
         <div className="col-span-5 row-span-1 h-11"><OrderListBar /></div>
         <div className={"col-span-5 grid "+_border}
@@ -20,7 +20,7 @@ const CustomerFrame =():JSX.Element=>{
 
 export default CustomerFrame
 
-const CustomerBody=():JSX.Element=>{
+const CustomerBody=():React.JSX.Element=>{
     const customerArr = useAppSelector((state)=>state.customers.customerList)
     let _maxHeight:string = 'calc(100vh - 12.75rem)'       // header:3.5, padding(上下):2.5, line height:2+1, mb:1rem listbar(上下):2.75+2.75
     let _length = customerArr.length + 1

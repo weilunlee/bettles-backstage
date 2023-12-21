@@ -7,7 +7,7 @@ type AppProps = {
     }
 }
 
-const BeetleHeader=({account}:AppProps):JSX.Element=>{
+const BeetleHeader=({account}:AppProps):React.JSX.Element=>{
     const _alert_arr:Array<string> = [GLOBAL_PIC.BELL, GLOBAL_PIC.MESSAGE]
 
     return(<div className="flex-none h-14 bg-zinc-50 shadow-md z-50 flex flex-row items-center">

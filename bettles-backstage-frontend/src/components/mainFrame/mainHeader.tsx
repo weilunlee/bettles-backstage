@@ -3,6 +3,7 @@ import { pageState } from "../../stores/storeInterface"
 import { NAVBAR_LIST, NAV_SWITCHER } from "../navBar/navBarVar"
 import { subPageHandler } from "../navBar/navFuncs"
 import { pageOptionHandler, pageOptionOpener } from "./mainFuncs"
+import { PlusBtn } from "../widgets/buttons"
 
 type optionNum = {
     p_num:number,
@@ -10,7 +11,7 @@ type optionNum = {
     openHandler:Function
 }
 
-const MainHeader=(page:pageState):JSX.Element=>{
+const MainHeader=(page:pageState):React.JSX.Element=>{
     const Nav_List = NAVBAR_LIST
     const _P = page.currentPage
     const _subP = page.currentSubPage
@@ -32,14 +33,11 @@ const MainHeader=(page:pageState):JSX.Element=>{
 }
 export default MainHeader
 
-const OptionButton = ({p_num, opener, openHandler}:optionNum):JSX.Element =>{
-    return <div 
+const OptionButton = ({p_num, opener, openHandler}:optionNum):React.JSX.Element =>{
+    return <div
     onClick={()=>{(openHandler(!opener))}}
     className="mr-10 px-5 my-1 flex items-center w-44 justify-around bg-zinc-50 cursor-pointer shadow-md hover:bg-blue-300 rounded-lg hover:shadow-none">
-    <div className="w-6 h-6 bg-blue-200 rounded-full flex justify-center items-center flex-none">
-        <div className="w-3 absolute border border-white"></div>
-        <div className="h-3 absolute border border-white"></div>
-    </div>
+    <PlusBtn color="bg-blue-200" size="w-6 h-6" type="" function={()=>{}}/>
     <div className="flex-1 flex justify-center">{pageOptionHandler(p_num)}</div>
 </div>
 }

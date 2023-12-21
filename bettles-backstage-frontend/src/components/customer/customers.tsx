@@ -4,7 +4,7 @@ import { CLEAR_CUSTOMERS, FETCH_CUTOMERS } from "../../stores/customersSlice"
 import { useAppDispatch } from "../../stores/hooks"
 import { DeleteBtn } from "../widgets/buttons"
 
-const Customers = (props:CustomerInterface):JSX.Element=>{
+const Customers = (props:CustomerInterface):React.JSX.Element=>{
     const dispatch = useAppDispatch()
     function deleteCustomer(_id:number){
         ApiSets.delete_customers(_id)

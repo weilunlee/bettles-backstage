@@ -13,7 +13,7 @@ export function pageOptionHandler(page:number):boolean|string{
     }
 }
 
-export function pageOptionOpener(page:number, openHandler:Function):JSX.Element{
+export function pageOptionOpener(page:number, openHandler:Function):React.JSX.Element{
     switch (page) {
         case 0: return <></>
         case 1: return <OrderCreater openHandler={openHandler}/>

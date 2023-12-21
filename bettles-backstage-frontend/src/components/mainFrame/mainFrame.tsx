@@ -5,9 +5,9 @@ import Dashboard from "../dashboard/dashboard"
 import OrderFrame from "../order/orderFrame"
 import MainHeader from "./mainHeader"
 
-const MainFrame=():JSX.Element=>{
+const MainFrame=():React.JSX.Element=>{
     const page = useAppSelector((state) => state.page)
-    function handlePage(_p:number, _s:number):JSX.Element{
+    function handlePage(_p:number, _s:number):React.JSX.Element{
         switch (_p) {
             case 0: return <Dashboard />
             case 1: return <OrderFrame />

@@ -6,7 +6,7 @@ type account = {
     accName:string
 }
 
-const Layout = ():JSX.Element=> {
+const Layout = ():React.JSX.Element=> {
     const _account:account = { accName:"user1" }
 
     return(

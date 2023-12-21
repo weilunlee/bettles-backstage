@@ -9,7 +9,7 @@ import { OrderInterface } from "../../actions/apiInterface"
 
 // interface OrderbodyIF{ orderArr:OrderInterface[] }
 
-const OrderFrame=():JSX.Element=>{
+const OrderFrame=():React.JSX.Element=>{
     return(<div className="flex-1 grid grid-flow-row grid-cols-6" style={{gridTemplateRows:"repeat(20, minmax(0, 1fr))"}}>
         <div className="col-span-5 row-span-1 h-11"><OrderListBar /></div>
         <div className={"col-span-1 bg-white rounded-xl"+_border} style={{gridRow:"span 5 / span 5"}}></div>
@@ -22,7 +22,7 @@ const OrderFrame=():JSX.Element=>{
 }
 export default OrderFrame
 
-const OrderBody=():JSX.Element=>{
+const OrderBody=():React.JSX.Element=>{
     let _maxHeight:string = 'calc(100vh - 12.75rem)'       // header:3.5, padding(上下):2.5, line height:2+1, mb:1rem listbar(上下):2.75+2.75
     const dispatch = useAppDispatch()
     const orderArr = useAppSelector((state)=>state.orders.orderList)
@@ -41,7 +41,7 @@ const OrderBody=():JSX.Element=>{
     </div>
 }
 
-export const OrderListBar=():JSX.Element=>{
+export const OrderListBar=():React.JSX.Element=>{
     return(<div className={"h-full w-full bg-white rounded-t-xl grid grid-cols-12"+_border}>
         <div className="col-span-1 flex justify-around items-center">
             <div className="flex justify-center items-center h-10 w-10 cursor-pointer rounded-full hover:bg-slate-100">
@@ -58,7 +58,7 @@ export const OrderListBar=():JSX.Element=>{
     </div>)
 }
 
-const PageArrow=({content, direction}:Arrow):JSX.Element=>{
+const PageArrow=({content, direction}:Arrow):React.JSX.Element=>{
     let tip_before = " before:w-3 before:h-3 before:rounded-tl before:border-stone-400 before:hover:border-black"
     let _dir = direction? " before:-rotate-45 before:border-l-2 before:border-t-2":" before:-rotate-45 before:border-b-2 before:border-r-2"
     return <div
