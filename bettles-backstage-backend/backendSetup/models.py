@@ -18,6 +18,18 @@ class OrdersStatus(Base):
     created_at = Column(DateTime)
     updated_at = Column(DateTime)
 
+class OrdersDust(Base):
+    __tablename__ = 'orders_dust'
+    id = Column(Integer, primary_key=True)
+    name = Column(String(45))
+    customer_id = Column(String(45))
+    order_id = Column(Integer)
+    place_time = Column(DateTime)
+    product_name = Column(String(45))
+    amounts = Column(Integer)
+    created_at = Column(DateTime)
+    updated_at = Column(DateTime)
+
 class Customers(Base):
     __tablename__ = 'customers'
     id = Column(Integer, primary_key=True)
@@ -28,4 +40,3 @@ class Customers(Base):
     conv_store = Column(String(255))
     created_at = Column(DateTime)
     updated_at = Column(DateTime)
-    
