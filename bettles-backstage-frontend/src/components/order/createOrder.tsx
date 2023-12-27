@@ -13,18 +13,20 @@ interface InputBlockIF{ content:string, input:string, func:Function, focus:boole
 
 const OrderCreater=({openHandler}:OrderCreaterIF):React.JSX.Element=>{
     const [returnStage, setReturnStage] = useState<number>(1);
-    let _frame = "border-8 border-zinc-500 rounded-xl bg-white shadow-xl p-5 "
+    let _frame = "border-8 border-zinc-500 rounded-xl bg-white shadow-xl py-5 pl-5 "
     let _trans = "-translate-x-5 -translate-y-5 "
     let _h = returnStage===0? 'h-1/2 ':'h-2/3 '
     return <div className={"absolute z-50 bottom-0 right-0 w-1/4 "+_h+_frame+_trans}>
-        <div className="text-xl font-bold flex flex-row justify-between w-100">
+        <div className="text-xl font-bold flex flex-row justify-between w-100 pr-5">
             <div>{returnStage===0?"建立訂單":"輸入產品"}</div>
-            <CloseXBtn func={openHandler}/>
+            <CloseXBtn css="w-6 h-6 bg-zinc-200 rounded" func={openHandler}/>
         </div>
-        {returnStage===0?
-            <OrderCustomer openHandler={setReturnStage}/>:
-            <OrderProducts openHandler={openHandler} />
-        }
+        <div className="h-[98%] overflow-auto scrollbar scroll pb-5">
+            {returnStage===0?
+                <OrderCustomer openHandler={setReturnStage}/>:
+                <OrderProducts openHandler={openHandler} />
+            }
+        </div>
     </div>
 }
 
@@ -65,14 +67,14 @@ const OrderCustomer=({openHandler}:OrderCreaterIF):React.JSX.Element=>{
         // .catch(err=>console.log(err))
     }
 
-    return(<>
+    return(<div className="pr-5">
         <InputBlock content="姓名" func={handleInputData} input={order.name} focus={noInput} />
         <InputBlock content="顧客id" func={handleInputData} input={order.customer_id} focus={noInput} />
         <InputBlock content="其他" func={handleInputData} input={order.optional} focus={false} />
         <div className="flex flex-row h-16 items-center justify-end">
             <div className="bg-zinc-200 px-5 py-2 cursor-pointer font-bold rounded shadow" onClick={()=>{PostOrder(order)}}>確認</div>
         </div>
-    </>)
+    </div>)
 }
 
 const InputBlock=({content, input, func, focus}:InputBlockIF):React.JSX.Element=>{

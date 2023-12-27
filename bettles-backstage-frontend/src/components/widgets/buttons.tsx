@@ -36,7 +36,7 @@ export const PlusBtn =({css="w-6 h-6", func}:XbtnIF):React.JSX.Element=>{
         if(func) func()             // 排除 func = undefiend 的情況
     }
     return <div onClick={passFuncFilter}
-        className={`${css} rounded-full flex justify-center items-center cursor-pointer shadow `}>
+        className={`${css} relative rounded-full flex justify-center items-center cursor-pointer shadow `}>
         <div className="w-3 absolute border border-white"></div>
         <div className="h-3 absolute border border-white"></div>
     </div>
@@ -47,7 +47,7 @@ export const CloseXBtn=({css, func}:XbtnIF):React.JSX.Element=>{
         if(func) func()             // 排除 func = undefiend 的情況
     }
     return <div onClick={passFuncFilter}
-        className={css+" bg-zinc-200 rounded flex justify-center items-center flex-none cursor-pointer"}>
+        className={css+" relative flex justify-center items-center flex-none cursor-pointer"}>
         <div className="w-3 absolute border rotate-45 border-zinc-700"></div>
         <div className="h-3 absolute border rotate-45 border-zinc-700"></div>
     </div>
