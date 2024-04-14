@@ -8,6 +8,9 @@ pip install "uvicorn[standard]"
 pip install databases
 # 載 sqlalchemy (optional)
 pip install sqlalchemy
+# 載 加密連線
+pip install cryptography
+
 
 # 啟動 uvicorn
 # python main.py
