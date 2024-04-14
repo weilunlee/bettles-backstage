@@ -1,9 +1,5 @@
-<div style="display: flex; align-items: center; justify-content: flex-start;">
-  <img src="./Group134.png" alt="alt text" height="30" />
-  <div style="font-size: 24px; padding-left: 1rem">角頭家族後台</div>
-</div>
-
----
+<img src="./Group134.png" alt="alt text" height="80" />
+<h2>角頭家族後台</h2>
 <div>
     <img src="./dm.png" alt="alt text" height="150" />
     <img src="./Group_123.png" alt="alt text" height="150" />
