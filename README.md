@@ -12,7 +12,7 @@
 訂單管理：
 ![image order](./bettles1.PNG)
 顧客管理：
-![image order](./image.PNG)
+![image order](./image.png)
 
 **前端**
 
