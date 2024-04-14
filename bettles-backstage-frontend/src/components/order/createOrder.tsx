@@ -59,12 +59,12 @@ const OrderCustomer=({openHandler}:OrderCreaterIF):React.JSX.Element=>{
         }
         if(_order.customer_id==="") _order.customer_id = "0"
         openHandler(1)
-        // ApiSets.post_order<OrderInterface[]>(_order)
-        // .then(res=>{
-        //     dispatch(FETCH_ORDERS(res))
-        //     openHandler(1)
-        // })
-        // .catch(err=>console.log(err))
+        ApiSets.post_order<OrderInterface[]>(_order)
+        .then(res=>{
+            dispatch(FETCH_ORDERS(res))
+            openHandler(1)
+        })
+        .catch(err=>console.log(err))
     }
 
     return(<div className="pr-5">

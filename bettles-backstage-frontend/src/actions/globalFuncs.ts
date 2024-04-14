@@ -13,7 +13,7 @@ class TimeHandler{
         this.now = new Date()
         this.full_time = ""
         this.year=this.timeObj.getFullYear()
-        this.month=this.timeObj.getMonth()
+        this.month=this.timeObj.getMonth()+1
         this.date=this.timeObj.getDate()
         this.hr=this.timeObj.getHours()
         this.min=this.timeObj.getMinutes()
@@ -25,13 +25,13 @@ class TimeHandler{
      */
     DB2Time =(_ts:string):string => _ts.trim().split("T").join(" ")
 
-    getFullDate=(_t=this.timeObj):string => _t.getFullYear()+"-"+this.proccessZero(_t.getMonth())+"-"+this.proccessZero(_t.getDate())
+    getFullDate=(_t=this.timeObj):string => _t.getFullYear()+"-"+this.proccessZero(_t.getMonth()+1)+"-"+this.proccessZero(_t.getDate())
 
     getFullTime=(_t=this.timeObj):string => _t.getHours()+":"+this.proccessZero(_t.getMinutes())+":"+this.proccessZero(_t.getSeconds())
 
     getPartialTime=(_t=this.timeObj):string => _t.getHours()+":"+this.proccessZero(_t.getMinutes())
 
-    getDateZHTW=(_t=this.timeObj):string => _t.getMonth()+"月"+_t.getDate()+"日"
+    getDateZHTW=(_t=this.timeObj):string => `${_t.getMonth()+1}`+"月"+_t.getDate()+"日"
 
 
     getAutoDate(_ts=this.timeObj.getTime(), _nts = this.now.getTime()):string{

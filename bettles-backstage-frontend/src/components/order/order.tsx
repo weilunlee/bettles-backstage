@@ -27,6 +27,7 @@ const Orders=(props:OrderInterface):React.JSX.Element=>{
     let _hoverStyle:string = "hover:outline hover:outline-2 hover:outline-slate-400 "
     let _frameStyle:string = "h-16 w-100 m-0.5 mb-1 bg-white rounded-sm shadow flex flex-row items-center "
     let _gridStyle:string = "grid"
+    console.log(props.payment_status, props.shipping_status)
     return(<div className={_frameStyle+_hoverStyle+_gridStyle} style={{gridTemplateColumns:"repeat(20, minmax(0, 1fr))"}}>
         <div className="col-span-1 flex justify-center items-center">
             <div className="flex justify-center items-center h-12 w-12 cursor-pointer rounded-full hover:bg-slate-100">
@@ -41,7 +42,7 @@ const Orders=(props:OrderInterface):React.JSX.Element=>{
         <div className="col-span-2 flex justify-center items-center">已完成</div>
         <div className="col-span-2 flex justify-center items-center">已完成</div>
         <div className="col-span-2 flex justify-center items-center">{props.name}</div>
-        <div className="col-span-2 flex justify-center items-center">$3000</div>
+        <div className="col-span-2 flex justify-center items-center">${ Math.floor(Math.random() * 3001)}</div>
         <DeleteBtn size="col-span-2" function={()=>{deleteOrder(props.id)}}/>
     </div>)
 }
