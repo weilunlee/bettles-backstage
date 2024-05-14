@@ -22,13 +22,22 @@ interface ItemsIF{
     func1:Function,
     func2:Function
 }
-interface ProductIF {
+interface ProductFormatIF {              // order
+    typeId:string,
     name:string,
-    catagory: string[]
+    catagory: string[],
+}
+interface OptionInputIF{
+    typeId:string,
+    name:string,
+    catagory: string,
+    amount:number
 }
 
+
 interface OptionIF {
-    product: ProductIF,
+    productFormat: ProductFormatIF,
+    result:OptionInputIF,
     func:Function
 }
 
@@ -50,6 +59,7 @@ const OrderProducts=({openHandler}:OrderCreaterIF):React.JSX.Element=>{
         setIndex(index+1)
     }
     function pushOrderList(_result:OrderIF){
+        console.log(_result)
         setOrderList(
             orderList.filter(o=>o.id!==_result.id)
         )
@@ -68,10 +78,9 @@ export default OrderProducts
 
 const ItemRow=({func1, func2, order}:ItemsIF):React.JSX.Element=>{
     const [show, setShow] = useState<boolean>(false);
-    const [select, setSelect] = useState<ProductIF>(PRODUCT_DIST.STBDS);
-    function toggleShow(){
-        setShow(!show)
-    }
+    const [productFormat, setProductFormat] = useState<ProductFormatIF>(PRODUCT_DIST.STBDS);
+    const [result, setResult] = useState<OptionInputIF>({...PRODUCT_DIST.STBDS, ...{catagory: '', amount:0}});
+    function toggleShow(){ setShow(!show) }
     function selectCombine(){
         toggleShow()
         func1()
@@ -82,11 +91,11 @@ const ItemRow=({func1, func2, order}:ItemsIF):React.JSX.Element=>{
                 {!show?<div className="w-10">
                     <PlusBtn css="bg-blue-400 w-6 h-6 active:bg-blue-200" func={selectCombine}/>
                 </div>:null}
-                <SelectBlock content={!show?"新增產品":"產品"+order.id} added={show} func={setSelect} />
+                <SelectBlock content={!show?"新增產品":"產品"+order.id} added={show} func={setProductFormat} />
             </div>
             {show?<div className="" onClick={toggleShow}><CloseXBtn css="w-6 h-6" func={()=>{func2(order)}} /></div>:null}
         </div>
-        {show? <OptionBlock product={select} func={()=>{}}/>:null}
+        {show? <OptionBlock result={result} productFormat={productFormat} func={setResult}/>:null}
     </div>
 }
 
@@ -106,17 +115,31 @@ const SelectBlock=({content, added, func}:SelectBoxIF):React.JSX.Element=>{
     </div>
 }
 
-const OptionBlock=({product, func}:OptionIF):React.JSX.Element=>{
+const OptionBlock=({productFormat, result, func}:OptionIF):React.JSX.Element=>{
+    const [catagory, setCatagory] = useState<string>('');
+    const [amount, setAmount] = useState<number>(0);
+    useEffect(()=>{
+        if(amount<0) return
+        func({
+            ...productFormat,
+            ...{catagory:catagory, amount:amount}
+        })
+    }, [productFormat, catagory, amount, func])
     return <div>
         <div className="flex flex-row h-10 w-100 items-center ">
             <div className="w-20">產品規格</div>
-            <select className={_border}>
-            {product?.catagory.map(res=><option key={res}>{res}</option>)}
+            <select className={_border} onChange={e=>{setCatagory(e.target.value)}}>
+            {productFormat?.catagory.map(res=><option key={res}>{res}</option>)}
             </select>
         </div>
         <div className="flex flex-row h-10 w-100 items-center ">
             <div className="w-20">產品數量</div>
-            <input type="number" className={`w-1/2 pl-1 ${_border}`}/>
+            <input
+                type="number"
+                min='0'
+                className={`w-1/2 pl-1 ${_border}`}
+                onChange={e=>{setAmount(parseInt(e.target.value))}}
+            />
         </div>
     </div>
 }

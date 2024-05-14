@@ -1,0 +1,17 @@
+STBDS_8L int
+STBDS_4L int
+STRSD_8L int
+STRSD_4L int
+NYNDS_8L int
+NYNDS_4L int
+BSCSD_12L int
+BSCSD_8L int
+BSCSD_4L int
+BCBDS_8L int
+BCBDS_4L int
+SPWWD_15L int
+SPWWD_13L int
+SPWWD_11L int
+SPWWD_9L int
+SPWWD_7L int
+SPWWD_B7L int
